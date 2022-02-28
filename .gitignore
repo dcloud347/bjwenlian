@@ -1,0 +1,7 @@
+/.idea
+__pycache__
+migrations
+/static
+token.txt
+.DS_Store
+/static/activity
