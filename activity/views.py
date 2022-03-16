@@ -16,7 +16,7 @@ import jieba.analyse
 import jieba.posseg as pseg
 
 
-def get_keywords(search_words):
+def get_keywords(search_words: str):
     seg_list = pseg.lcut(search_words)
     characteristic = ['n', 'nr', 'nz', 'PER', 'ns', 'v', 'LOC', 's', 'nt', 'ORG', 't', 'nw', 'vn', 'TIME', 'a']
     keywords = []
@@ -105,7 +105,6 @@ class GetAllPassagesView(View):
         data = list(Passage.objects.filter(check=True).all().values())
         data.sort(key=like_sort, reverse=True)
         return JsonResponse({'code': 200, 'message': '获取成功', 'data': data}, status=200)
-
 
 class GetPassageInfoView(View):
     @csrf_exempt
@@ -256,6 +255,7 @@ class CreateActivityView(View):
         else:
             return JsonResponse({'code': 403, 'message': '您还没登录'}, status=403)
 
+
 class SearchActivityView(View):
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
@@ -271,6 +271,7 @@ class SearchActivityView(View):
             return JsonResponse({'code': 200, 'message': '获取成功', 'data': queried_activities}, status=200)
         else:
             return JsonResponse({'code': 403, 'message': '参数错误'}, status=403)
+
 
 class SearchPassageView(View):
     @csrf_exempt

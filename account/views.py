@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
 from django.contrib.auth.models import User
 
+from bjwenlian import settings
 from bjwenlian.settings import BASE_DIR
 from .models import SchoolAccount, ClubAccount, UserAccount
 from activity.models import Activities, Passage
@@ -69,6 +70,24 @@ class UserLoginView(View):
                 return JsonResponse({'code': 403, 'message': '用户名或密码错误'}, status=403)
         else:
             return JsonResponse({'code': 403, 'message': '参数错误'}, status=403)
+
+
+class UserInfoModifyView(View):
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(UserInfoModifyView, self).dispatch(request, *args, **kwargs)
+
+    @classmethod
+    def put(cls, request):
+        data = json.loads(request.body.decode())
+        if request.user.is_authenticated:
+            user = UserAccount.objects.get(basic=request.user)
+            for item, value in data.items():
+                setattr(user, item, value)
+            user.save()
+            return JsonResponse({'code': 200, 'message': '成功修改'}, status=200)
+        else:
+            return JsonResponse({'code': 403, 'message': '您还没登录'}, status=403)
 
 
 class UserLogoutView(View):
@@ -231,6 +250,31 @@ class GetUserAvatarView(View):
             return JsonResponse({'code': 403, 'message': '您还没登录'}, status=403)
 
 
+class UploadUserAvatarView(View):
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(UploadUserAvatarView, self).dispatch(request, *args, **kwargs)
+
+    @classmethod
+    def post(cls, request):
+        if request.user.is_authenticated:
+            img = request.FILES.get("avatar")
+            name = img.name
+            list = name.split('.')
+            end = '.'+list[len(list)-1]
+            save_path = '{}/{}/{}'.format(settings.AVATAR_ROOT, 'user', request.user.username+end)
+            print(save_path)
+            with open(save_path, 'wb') as f:
+                for content in img.chunks():
+                    f.write(content)
+            user = UserAccount.objects.get(basic=request.user)
+            user.avatar = save_path
+            user.save()
+            return JsonResponse({'code': 200, 'message': 'updated'}, status=200)
+        else:
+            return JsonResponse({'code': 403, 'message': '您还没登录'}, status=403)
+
+
 class GetOtherUserAvatarView(View):
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
@@ -321,13 +365,17 @@ class GetClubInfoView(View):
     def get(cls, request):
         club_name = request.GET.get('club_name', default=False)
         if club_name:
+            user = UserAccount.objects.get(basic=request.user)
             data = list(ClubAccount.objects.filter(check=True, name=club_name).all().values())
             club = ClubAccount.objects.get(check=True, name=club_name)
+            is_leader=False
+            if club.leader == user:
+                is_leader=True
             setattr(club, 'visitors', club.visitors + 1)
             club.save()
             if not data:
                 return JsonResponse({'code': 403, 'message': '没有此社团'}, status=403)
-            return JsonResponse({'code': 200, 'message': '获取成功', 'data': data}, status=200)
+            return JsonResponse({'code': 200, 'message': '获取成功', 'data': data,'is_leader':is_leader}, status=200)
         else:
             return JsonResponse({'code': 403, 'message': '参数错误'}, status=403)
 
@@ -342,6 +390,36 @@ class GetMyClubsView(View):
         if request.user.is_authenticated:
             user = UserAccount.objects.get(basic=request.user)
             data = list(user.clubs.all().values())
+            return JsonResponse({'code': 200, 'message': '获取成功', 'data': data}, status=200)
+        else:
+            return JsonResponse({'code': 403, 'message': '您还没登录'}, status=403)
+
+
+class GetMyLikedPassagesView(View):
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(GetMyLikedPassagesView, self).dispatch(request, *args, **kwargs)
+
+    @classmethod
+    def get(cls, request):
+        if request.user.is_authenticated:
+            user = UserAccount.objects.get(basic=request.user)
+            data = list(user.liked_passage.all().values())
+            return JsonResponse({'code': 200, 'message': '获取成功', 'data': data}, status=200)
+        else:
+            return JsonResponse({'code': 403, 'message': '您还没登录'}, status=403)
+
+
+class GetMyLikedActivitiesView(View):
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(GetMyLikedActivitiesView, self).dispatch(request, *args, **kwargs)
+
+    @classmethod
+    def get(cls, request):
+        if request.user.is_authenticated:
+            user = UserAccount.objects.get(basic=request.user)
+            data = list(user.liked_activity.all().values())
             return JsonResponse({'code': 200, 'message': '获取成功', 'data': data}, status=200)
         else:
             return JsonResponse({'code': 403, 'message': '您还没登录'}, status=403)

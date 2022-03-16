@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Activities,Passage,Post
+from .models import Activities,Passage
 # Register your models here.
 
 
@@ -12,8 +12,3 @@ class ActivitiesAdmin(admin.ModelAdmin):
 class PassagesAdmin(admin.ModelAdmin):
     list_display = ('pk', 'title', 'author','check','school','like')
     list_filter = ['title', 'school', 'check','author']
-
-@admin.register(Post)
-class PassagesAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'author','check','school','like')
-    list_filter = [ 'school', 'check','author']

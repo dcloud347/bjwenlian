@@ -15,9 +15,10 @@ class SchoolAccount(models.Model):
     def __str__(self):
         return self.name
 
+
 class UserAccount(models.Model):
-    basic = models.OneToOneField(User, unique=True, on_delete=models.CASCADE )
-    nickname = models.CharField(verbose_name='用户名', primary_key=True,max_length=20,unique=True)
+    basic = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
+    nickname = models.CharField(verbose_name='用户名', primary_key=True, max_length=20, unique=True)
     grade = models.IntegerField(verbose_name='年级', default=0)
     phone = models.CharField(verbose_name='电话', default='', max_length=12)
     signature = models.CharField(verbose_name='签名', default='', max_length=200, blank=True)

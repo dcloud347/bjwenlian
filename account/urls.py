@@ -2,7 +2,8 @@ from django.urls import path
 from .views import UserRegisterView, GetSchoolsView, GetClubsView, UserLoginView,GetUserAvatarView,UserLogoutView,\
     GetClubAvatarView,GetUserClubsView,GetUserLikedActivitiesView,GetUserLikedPassagesView,GetUserLoginInfoView,\
     GetMyClubsView,JoinClubsView,GetUserInfoView,GetClubInfoView,GetOtherUserInfoView,GetOtherUserAvatarView,\
-    GetMyPassagesView,GetOtherUserPassagesView
+    GetMyPassagesView,GetOtherUserPassagesView,GetMyLikedPassagesView,GetMyLikedActivitiesView,UserInfoModifyView,\
+    UploadUserAvatarView
 
 urlpatterns = [
     path('user-register/', UserRegisterView.as_view()),
@@ -23,5 +24,9 @@ urlpatterns = [
     path('club_info-get/',GetClubInfoView.as_view()),
     path('other_user_info-get/',GetOtherUserInfoView.as_view()),
     path('other_user_avatar-get/',GetOtherUserAvatarView.as_view()),
-    path('other_user_passages-get/',GetOtherUserPassagesView.as_view())
+    path('other_user_passages-get/',GetOtherUserPassagesView.as_view()),
+    path('my_liked_passage-get/',GetMyLikedPassagesView.as_view()),
+    path('my_liked_activity-get/',GetMyLikedActivitiesView.as_view()),
+    path('user_info-modify/',UserInfoModifyView.as_view()),
+    path('user_avatar-upload/',UploadUserAvatarView.as_view())
 ]

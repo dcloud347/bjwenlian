@@ -16,5 +16,5 @@ urlpatterns = [
     path('passage-create/',CreatePassageView.as_view()),
     path('passage_into-get/',GetPassageInfoView.as_view()),
     path('passage-search/',SearchPassageView.as_view()),
-    path('activity-search/',SearchActivityView.as_view())
+    path('activity-search/',SearchActivityView.as_view()),
 ]

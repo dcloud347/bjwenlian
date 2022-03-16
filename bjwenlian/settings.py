@@ -132,6 +132,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 ACTIVITY_ROOT = os.path.join(BASE_DIR, "static/activity")
 PASSAGE_ROOT = os.path.join(BASE_DIR, "static/passage")
+AVATAR_ROOT = "static/avatar/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = ('*')

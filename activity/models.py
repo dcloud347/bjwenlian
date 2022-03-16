@@ -54,25 +54,3 @@ class Passage(models.Model):
         db_table = 'Passage'
         verbose_name = '文章'
         verbose_name_plural = verbose_name
-
-
-class Post(models.Model):
-    content = models.TextField(verbose_name='帖子内容', default='')
-    like = models.IntegerField(verbose_name="点赞", default=0)
-    files = models.CharField(verbose_name="文件", default='', max_length=1000, blank=True)
-    school = models.ForeignKey('account.SchoolAccount', on_delete=models.CASCADE, related_name='posts',
-                               verbose_name="学校")
-    author = models.ForeignKey('account.UserAccount', on_delete=models.CASCADE, related_name='posts',
-                               verbose_name="社团")
-    time_create = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
-    check = models.BooleanField(default=False, verbose_name="是否审核通过")
-    follow = models.ManyToManyField('Post', related_name='+', verbose_name="跟帖", db_table="Post_"
-                                    , blank=True)
-
-    def __str__(self):
-        return self.pk
-
-    class Meta:
-        db_table = 'Post'
-        verbose_name = '帖子'
-        verbose_name_plural = verbose_name
