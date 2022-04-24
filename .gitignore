@@ -2,7 +2,6 @@
 /media/passage/
 /media/activity
 /media/avatar/
-/media/avatar/*
 .DS_Store
 # Byte-compiled / optimized / DLL files
 __pycache__/
