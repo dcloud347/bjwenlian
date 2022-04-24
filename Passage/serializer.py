@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .models import Passage
-from Account.serializer import SimplestUserSerializer,SimpUserSerializer
+from Account.serializer import SimplestUserSerializer, SimpUserSerializer
 
 
 class PassageSerializer(serializers.ModelSerializer):

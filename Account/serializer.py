@@ -44,7 +44,7 @@ class ClubSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClubAccount
         fields = ['name', 'category', 'simp_intro', 'full_intro', 'rank', 'time_update', 'time_create', 'avatar',
-                'leader', 'school', 'activities']
+                  'leader', 'school', 'activities']
 
 
 class UserAccountSerializer(serializers.ModelSerializer):
@@ -58,7 +58,7 @@ class UserAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserAccount
         fields = ['username', 'grade', 'phone', 'signature', 'liked_activity', 'liked_passage', 'time_create', 'avatar',
-                'school', 'clubs', 'passages', 'participated_activities']
+                  'school', 'clubs', 'passages', 'participated_activities']
 
 
 class UserAccountModifySerializer(serializers.ModelSerializer):

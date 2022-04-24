@@ -4,8 +4,8 @@ from django.db import models
 # Create your models here.
 
 
-def passage_upload_to(instance,file):
-    return 'passage/' + instance.title+'/'+file
+def passage_upload_to(instance, file):
+    return 'passage/' + instance.title + '/' + file
 
 
 class Passage(models.Model):

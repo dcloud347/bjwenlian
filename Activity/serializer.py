@@ -7,7 +7,7 @@ from Account.serializer import SimpClubSerializer, SimplestUserSerializer
 class AttachmentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attachment
-        fields = ['id','title']
+        fields = ['id', 'title']
 
 
 class CreateActivitySerializer(serializers.ModelSerializer):
@@ -16,6 +16,7 @@ class CreateActivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Activities
         fields = ['title', 'simp_intro', 'full_intro', 'club']
+
 
 class ActivitiesSerializer(serializers.ModelSerializer):
     club = SimpClubSerializer()

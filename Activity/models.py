@@ -4,13 +4,13 @@ from django.db import models
 # Create your models here.
 
 
-def activity_upload_to(instance,filename):
-    return 'activity/' + instance.activity.title+'/'+filename
+def activity_upload_to(instance, filename):
+    return 'activity/' + instance.activity.title + '/' + filename
 
 
 class Attachment(models.Model):
     activity = models.ForeignKey('Activities', on_delete=models.CASCADE, verbose_name='活动',
-                                 related_name='attachments',blank=True,null=True)
+                                 related_name='attachments', blank=True, null=True)
     title = models.CharField(max_length=20, verbose_name='标题')
     file = models.FileField(upload_to=activity_upload_to, verbose_name='文件')
 
@@ -21,6 +21,7 @@ class Attachment(models.Model):
     @property
     def file_name(self):
         return self.file.name.rsplit('/', 1)[-1]
+
 
 class Activities(models.Model):
     title = models.CharField(verbose_name="活动名称", max_length=60, unique=True, primary_key=True)

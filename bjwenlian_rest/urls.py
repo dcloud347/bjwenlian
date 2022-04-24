@@ -15,15 +15,15 @@ Including another URLconf
 """
 from django.views.static import serve
 from django.contrib import admin
-from django.urls import path,include,re_path
+from django.urls import path, include, re_path
 
-from bjwenlian_rest.settings import MEDIA_ROOT,PRODUCTION
+from bjwenlian_rest.settings import MEDIA_ROOT, PRODUCTION
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/',include('Account.urls')),
-    path('passage/',include('Passage.urls')),
-    path('activity/',include('Activity.urls'))
+    path('auth/', include('Account.urls')),
+    path('passage/', include('Passage.urls')),
+    path('activity/', include('Activity.urls'))
 ]
 if not PRODUCTION:
-    urlpatterns.append(re_path('media/(?P<path>.*)',serve,{"document_root":MEDIA_ROOT}))
+    urlpatterns.append(re_path('media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT}))
