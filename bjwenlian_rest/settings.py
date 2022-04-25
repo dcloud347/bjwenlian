@@ -26,7 +26,7 @@ PRODUCTION = socket.gethostname().find('HCCSERVER') != -1
 # SECURITY WARNING: don't run with debug turned on in production!
 if PRODUCTION:
     DEBUG = False
-    ALLOWED_HOSTS = ['community.hcc.io']
+    ALLOWED_HOSTS = ['hcccommunity.hcc.io','hcccommunityapi.hcc.io']
 else:
     DEBUG = True
     ALLOWED_HOSTS = []
