@@ -27,6 +27,7 @@ PRODUCTION = socket.gethostname().find('HCCSERVER') != -1
 if PRODUCTION:
     DEBUG = False
     ALLOWED_HOSTS = ['hcccommunity.hcc.io','hcccommunityapi.hcc.io']
+    CORS_ORIGIN_WHITELIST = ['http://hcccommunity.hcc.io']
 else:
     DEBUG = True
     ALLOWED_HOSTS = []
@@ -164,3 +165,9 @@ JWT_AUTH = {
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CORS_ORIGIN_WHITELIST = [
+	"https://example.com",
+    "https://sub.example.com",
+    "http//localhost:8080",
+    "http://127.0.0.1:9000",
+]
