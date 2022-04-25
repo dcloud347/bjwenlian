@@ -165,9 +165,3 @@ JWT_AUTH = {
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-CORS_ORIGIN_WHITELIST = [
-	"https://example.com",
-    "https://sub.example.com",
-    "http//localhost:8080",
-    "http://127.0.0.1:9000",
-]
