@@ -21,9 +21,9 @@ from bjwenlian_rest.settings import MEDIA_ROOT, PRODUCTION
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include('Account.urls')),
-    path('passage/', include('Passage.urls')),
-    path('activity/', include('Activity.urls'))
+    path('api/auth/', include('Account.urls')),
+    path('api/passage/', include('Passage.urls')),
+    path('api/activity/', include('Activity.urls'))
 ]
 if not PRODUCTION:
     urlpatterns.append(re_path('media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT}))
