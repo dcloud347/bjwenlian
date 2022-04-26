@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'Account',
     'Activity',
-    'Passage'
+    'Passage',
+    'Post'
 ]
 
 MIDDLEWARE = [
