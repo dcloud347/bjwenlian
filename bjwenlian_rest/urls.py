@@ -23,7 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('Account.urls')),
     path('passage/', include('Passage.urls')),
-    path('activity/', include('Activity.urls'))
+    path('activity/', include('Activity.urls')),
+    path('post/',include('Post.urls'))
 ]
 if not PRODUCTION:
     urlpatterns.append(re_path('media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT}))

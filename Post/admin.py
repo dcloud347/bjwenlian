@@ -3,7 +3,7 @@ from .models import Post,Comments
 # Register your models here.
 
 @admin.register(Post)
-class PassagesAdmin(admin.ModelAdmin):
+class PostsAdmin(admin.ModelAdmin):
     list_display = ('pk', 'title', 'content', 'check', 'author','time_create')
     list_filter = ['title', 'check', 'author']
 
