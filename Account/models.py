@@ -30,7 +30,7 @@ class Participation(models.Model):
 
 class UserAccount(AbstractUser):
     grade = models.IntegerField(verbose_name='年级', default=0)
-    phone = models.CharField(verbose_name='电话', default='', max_length=12, unique=True)
+    phone = models.CharField(verbose_name='电话', default='', max_length=12)
     signature = models.CharField(verbose_name='签名', default='', max_length=200, blank=True)
     liked_activity = models.ManyToManyField('Activity.Activities', related_name='fans', verbose_name="点赞的活动",
                                             db_table="User_activity"
