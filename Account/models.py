@@ -45,7 +45,7 @@ class UserAccount(AbstractUser):
     time_update = models.DateTimeField(verbose_name='修改时间', auto_now=True)
     time_create = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
     avatar = models.ImageField(upload_to=user_upload_to, default="default/user.jpeg")
-    school = models.ForeignKey('SchoolAccount', on_delete=models.CASCADE, related_name='users', verbose_name="学校")
+    school = models.ForeignKey('SchoolAccount', on_delete=models.CASCADE, null=True, blank=True, related_name='users', verbose_name="学校")
     clubs = models.ManyToManyField('ClubAccount', related_name='members', verbose_name="社团", db_table="User_club"
                                    , blank=True)
 
