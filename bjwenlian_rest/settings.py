@@ -26,8 +26,8 @@ PRODUCTION = socket.gethostname().find('HCCSERVER') != -1
 # SECURITY WARNING: don't run with debug turned on in production!
 if PRODUCTION:
     DEBUG = False
-    ALLOWED_HOSTS = ['hcccommunity.hcc.io','hcccommunityapi.hcc.io']
-    CORS_ORIGIN_WHITELIST = ['http://hcccommunity.hcc.io']
+    ALLOWED_HOSTS = ['bjwenlian.hcc.io','bjwenlianapi.hcc.io']
+    CORS_ORIGIN_WHITELIST = ['http://bjwenlian.hcc.io']
 else:
     DEBUG = True
     ALLOWED_HOSTS = []
