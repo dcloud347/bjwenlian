@@ -132,7 +132,7 @@ class HotActivityView(APIView):
         user = ActivitiesSerializer(queryset, many=True)
         data = user.data
         data.sort(key=like_sort, reverse=True)
-        return Response(data[0:5])
+        return Response(data[0:4])
 
 
 class SearchActivitiesView(APIView):
