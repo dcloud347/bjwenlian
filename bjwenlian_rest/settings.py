@@ -27,7 +27,7 @@ PRODUCTION = socket.gethostname().find('HCCSERVER') != -1
 if PRODUCTION:
     DEBUG = False
     ALLOWED_HOSTS = ['bjwenlian.hcc.io','bjwenlianapi.hcc.io']
-    CORS_ORIGIN_WHITELIST = ['http://bjwenlian.hcc.io']
+    CORS_ORIGIN_WHITELIST = ['https://bjwenlian.hcc.io']
 else:
     DEBUG = True
     ALLOWED_HOSTS = []
