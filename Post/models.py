@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 
 class Post(models.Model):
-    title = models.CharField(max_length=20, verbose_name='标题')
+    title = models.CharField(max_length=20, verbose_name='标题',unique=True,primary_key=True)
     content = models.TextField(verbose_name='内容', default='''''')
     author = models.ForeignKey('Account.UserAccount', on_delete=models.CASCADE, related_name='posts')
     time_create = models.DateTimeField(verbose_name='发布时间', auto_now_add=True)
