@@ -6,7 +6,7 @@ from .serializer import PostSerializer
 
 
 class PostViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin
-                ,GenericViewSet):
+    , GenericViewSet):
     queryset = Post.objects.filter(check=True).all()
     serializer_class = PostSerializer
     lookup_field = 'title'
@@ -31,7 +31,7 @@ class PostViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, mixins.UpdateM
             comment = Comments.objects.create(belonging=post, content=request.data['content'], reply_to=reply,
                                               author=request.user)
         else:
-            comment = Comments.objects.create(belonging=post, content=request.data['content'],author=request.user)
+            comment = Comments.objects.create(belonging=post, content=request.data['content'], author=request.user)
         comment.save()
         data = PostSerializer(post).data
         return Response({'status': 'success', 'data': data})

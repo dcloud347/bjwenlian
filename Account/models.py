@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
+import uuid
 
 # Create your models here.
 
@@ -19,7 +19,7 @@ class SchoolAccount(models.Model):
 
 
 def user_upload_to(instance, file):
-    return 'avatar/user/' + instance.username + '/' + file
+    return 'avatar/user/' + instance.username + '/' + str(uuid.uuid4())+file.split(".")[-1]
 
 
 class Participation(models.Model):

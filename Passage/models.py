@@ -1,11 +1,12 @@
 from django.db import models
+import uuid
 
 
 # Create your models here.
 
 
 def passage_upload_to(instance, file):
-    return 'passage/' + instance.title + '/' + file
+    return 'passage/' + instance.title + '/' + str(uuid.uuid4()) + file.split(".")[-1]
 
 
 class Passage(models.Model):

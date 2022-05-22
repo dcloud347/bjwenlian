@@ -1,11 +1,11 @@
 from django.db import models
-
+import uuid
 
 # Create your models here.
 
 
 def activity_upload_to(instance, filename):
-    return 'activity/' + instance.activity.title + '/' + filename
+    return 'activity/' + instance.activity.title + '/' + str(uuid.uuid4())+filename.split(".")[-1]
 
 
 class Attachment(models.Model):
