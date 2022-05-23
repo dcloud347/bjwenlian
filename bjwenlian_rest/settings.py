@@ -22,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-wq0*qpf%78ye++i7dv!&#1&reb86r+0yg#m+je2iy=+8&!k^#1'
 
-PRODUCTION = socket.gethostname().find('HCCSERVER') != -1
+PRODUCTION = socket.gethostname().find('ls') != -1
 # SECURITY WARNING: don't run with debug turned on in production!
 if PRODUCTION:
     DEBUG = False
-    ALLOWED_HOSTS = ['bjwenlian.hcc.io','bjwenlianapi.hcc.io']
-    CORS_ORIGIN_WHITELIST = ['https://bjwenlian.hcc.io']
+    ALLOWED_HOSTS = ['bjgzrwlh.com', 'www.bjgzrwlh.com', 'api.bjgzrwlh.com']
+    CORS_ORIGIN_WHITELIST = ['http://bjgzrwlh.com', 'http://www.bjgzrwlh.com']
 else:
     DEBUG = True
     ALLOWED_HOSTS = []
