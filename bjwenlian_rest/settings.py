@@ -26,8 +26,8 @@ PRODUCTION = socket.gethostname().find('ls') != -1
 # SECURITY WARNING: don't run with debug turned on in production!
 if PRODUCTION:
     DEBUG = False
-    ALLOWED_HOSTS = ['bjgzrwlh.com', 'www.bjgzrwlh.com', 'api.bjgzrwlh.com']
-    CORS_ORIGIN_WHITELIST = ['http://bjgzrwlh.com', 'http://www.bjgzrwlh.com']
+    ALLOWED_HOSTS = ['bjgzrwlh.com', 'api.bjgzrwlh.com']
+    CORS_ORIGIN_WHITELIST = ['http://bjgzrwlh.com']
 else:
     DEBUG = True
     ALLOWED_HOSTS = []
