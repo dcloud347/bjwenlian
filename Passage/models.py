@@ -6,7 +6,7 @@ import uuid
 
 
 def passage_upload_to(instance, file):
-    return 'passage/' + instance.title + '/' + str(uuid.uuid4()) + file.split(".")[-1]
+    return 'passage/' + instance.title + '/' + str(uuid.uuid4()) +"."+ file.split(".")[-1]
 
 
 class Passage(models.Model):
